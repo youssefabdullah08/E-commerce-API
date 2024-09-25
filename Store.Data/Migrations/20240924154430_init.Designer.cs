@@ -12,7 +12,7 @@ using Store.Data.Contexts;
 namespace Store.Data.Migrations
 {
     [DbContext(typeof(StoreDBcontext))]
-    [Migration("20240924140445_init")]
+    [Migration("20240924154430_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -25,15 +25,35 @@ namespace Store.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Store.Data.Entites.Product", b =>
+            modelBuilder.Entity("Store.Data.Entites.Brand", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Brandid")
+                    b.Property<DateTime>("CreateAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands");
+                });
+
+            modelBuilder.Entity("Store.Data.Entites.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BrandId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreateAt")
@@ -49,25 +69,25 @@ namespace Store.Data.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<int>("Typeid")
+                    b.Property<int>("TypeId")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.HasIndex("Brandid");
+                    b.HasIndex("BrandId");
 
-                    b.HasIndex("Typeid");
+                    b.HasIndex("TypeId");
 
                     b.ToTable("products");
                 });
 
-            modelBuilder.Entity("Store.Data.Entites.ProductBrand", b =>
+            modelBuilder.Entity("Store.Data.Entites.Type", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("datetime2");
@@ -76,42 +96,22 @@ namespace Store.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.ToTable("productBrands");
-                });
-
-            modelBuilder.Entity("Store.Data.Entites.ProductType", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<DateTime>("CreateAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.ToTable("productTypes");
+                    b.ToTable("Types");
                 });
 
             modelBuilder.Entity("Store.Data.Entites.Product", b =>
                 {
-                    b.HasOne("Store.Data.Entites.ProductBrand", "Brand")
+                    b.HasOne("Store.Data.Entites.Brand", "Brand")
                         .WithMany()
-                        .HasForeignKey("Brandid")
+                        .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Store.Data.Entites.ProductType", "Type")
+                    b.HasOne("Store.Data.Entites.Type", "Type")
                         .WithMany()
-                        .HasForeignKey("Typeid")
+                        .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -16,23 +16,23 @@ namespace Store.Reposatrys
         {
             try
             {
-                if (context.productBrands != null && !context.productBrands.Any())
+                if (context.Brands != null && !context.Brands.Any())
                 {
                     var Data = File.ReadAllText("../Store.Reposatrys/SeedData/brands.json");
-                    var brands = JsonSerializer.Deserialize<List<ProductBrand>>(Data);
+                    var brands = JsonSerializer.Deserialize<List<Brand>>(Data);
                     if (brands is not null)
                     {
-                        await context.productBrands.AddRangeAsync(brands);
+                        await context.Brands.AddRangeAsync(brands);
                     }
 
                 }
-                if (context.productTypes != null && !context.productTypes.Any())
+                if (context.Types != null && !context.Types.Any())
                 {
                     var Data = File.ReadAllText("../Store.Reposatrys/SeedData/types.json");
-                    var Types = JsonSerializer.Deserialize<List<ProductType>>(Data);
+                    var Types = JsonSerializer.Deserialize<List<Data.Entites.Type>>(Data);
                     if (Types is not null)
                     {
-                        await context.productTypes.AddRangeAsync(Types);
+                        await context.Types.AddRangeAsync(Types);
                     }
 
                 }

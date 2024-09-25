@@ -1,6 +1,9 @@
 
 using Microsoft.EntityFrameworkCore;
 using Store.Data.Contexts;
+using Store.Reposatrys.Interfaces;
+using Store.Reposatrys.Reposatrys;
+using Store.Serveses.ProductServes;
 using Store.Web.Helper;
 
 namespace Store.Web
@@ -18,6 +21,8 @@ namespace Store.Web
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("localConnection"));
             });
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddAutoMapper(typeof(ProductProfile));
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 

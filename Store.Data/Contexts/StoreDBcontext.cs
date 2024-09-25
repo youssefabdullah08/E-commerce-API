@@ -17,8 +17,8 @@ namespace Store.Data.Contexts
             //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }
-        public DbSet<ProductBrand> productBrands { get; set; }
+        public DbSet<Brand> Brands { get; set; }
         public DbSet<Product> products { get; set; }
-        public DbSet<ProductType> productTypes { get; set; }
+        public DbSet<Entites.Type> Types { get; set; }
     }
 }

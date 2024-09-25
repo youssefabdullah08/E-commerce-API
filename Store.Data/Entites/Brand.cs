@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Store.Data.Entites
 {
-    public class ProductType : BaseEntity<int>
+    public class Brand : BaseEntity<int>
     {
         public string Name { get; set; }
     }

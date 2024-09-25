@@ -8,7 +8,7 @@ namespace Store.Data.Entites
 {
     public class BaseEntity<T>
     {
-        public T id { get; set; }
+        public T Id { get; set; }
         public DateTime CreateAt { get; set; } = DateTime.Now;
     }
 }
