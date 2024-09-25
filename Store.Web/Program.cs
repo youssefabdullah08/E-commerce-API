@@ -22,6 +22,7 @@ namespace Store.Web
                 options.UseSqlServer(builder.Configuration.GetConnectionString("localConnection"));
             });
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+            builder.Services.AddScoped<IProductServes, ProductServes>();
             builder.Services.AddAutoMapper(typeof(ProductProfile));
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
