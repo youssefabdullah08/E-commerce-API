@@ -31,7 +31,7 @@ namespace Store.Reposatrys.Reposatrys
             if (!_Repostreies.ContainsKey(key))
             {
                 var Type = typeof(GnericReposatry<>);
-                var Instance = Activator.CreateInstance(Type.MakeGenericType(typeof(T)));
+                var Instance = Activator.CreateInstance(Type.MakeGenericType(typeof(T)), context);
                 _Repostreies.Add(key, Instance);
             }
             return (IGnericReposatry<T>)_Repostreies[key];

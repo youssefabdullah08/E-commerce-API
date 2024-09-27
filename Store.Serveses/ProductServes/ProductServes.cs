@@ -27,21 +27,21 @@ namespace Store.Serveses.ProductServes
         public async Task<IReadOnlyList<Brand>> GetBrandsAsync()
  => await unit.reposatry<Brand>().GetAll();
 
-        Task<ProductDTO> IProductServes.GetProductAsync(int id)
+        async Task<ProductDTO> IProductServes.GetProductAsync(int id)
         {
-            var products = unit.reposatry<Product>().Getbyid(id);
+            var products = await unit.reposatry<Product>().Getbyid(id);
 
             var result = mapper.Map<ProductDTO>(products);
-            return Task.FromResult(result); ;
+            return (result);
         }
 
-        Task<IReadOnlyList<ProductDTO>> IProductServes.GetProductsAsync()
+        async Task<IReadOnlyList<ProductDTO>> IProductServes.GetProductsAsync()
         {
-            var products = unit.reposatry<Product>().GetAll();
+            var products = await unit.reposatry<Product>().GetAll();
 
             var result = mapper.Map<IReadOnlyList<ProductDTO>>(products);
 
-            return Task.FromResult(result); ;
+            return result;
         }
     }
 }
