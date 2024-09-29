@@ -11,5 +11,8 @@ namespace Store.Reposatrys.Spceficitions
     {
         Expression<Func<T, bool>> craiteria { get; }
         List<Expression<Func<T, object>>> includes { get; }
+        int Take { get; }
+        int Skip { get; }
+        bool Ispagneted { get; }
     }
 }

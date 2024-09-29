@@ -16,9 +16,22 @@ namespace Store.Reposatrys.Spceficitions
         public Expression<Func<T, bool>> craiteria { get; }
 
         public List<Expression<Func<T, object>>> includes { get; } = new List<Expression<Func<T, object>>>();
+
+        public int Take { get; private set; }
+
+        public int Skip { get; private set; }
+
+        public bool Ispagneted { get; private set; }
+
         protected void AddIncludes(Expression<Func<T, object>> include)
         {
             includes.Add(include);
+        }
+        protected void ApllyPagention(int take, int skip)
+        {
+            Take = take;
+            Skip = skip;
+            Ispagneted = true;
         }
     }
 }

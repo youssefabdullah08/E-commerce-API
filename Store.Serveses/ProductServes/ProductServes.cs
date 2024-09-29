@@ -2,6 +2,7 @@
 using Store.Data.Entites;
 using Store.Reposatrys.Interfaces;
 using Store.Reposatrys.Spceficitions.ProductSpecs;
+using Store.Serveses.Helper;
 using Store.Serveses.ProductServes.DTOs;
 using System;
 using System.Collections.Generic;
@@ -47,14 +48,14 @@ namespace Store.Serveses.ProductServes
             return (result);
         }
 
-        async Task<IReadOnlyList<ProductDTO>> IProductServes.GetProductsAsync(ProductSpecfictions input)
+        async Task<PagentionDTO<ProductDTO>> IProductServes.GetProductsAsync(ProductSpecfictions input)
         {
             var specs = new ProductWithSpecs(input);
             var products = await unit.reposatry<Product>().GetAll(specs);
 
             var result = mapper.Map<IReadOnlyList<ProductDTO>>(products);
 
-            return result;
+            return new PagentionDTO<ProductDTO>(input.pageIndex, input.PageSize, products.Count, result);
         }
     }
 }

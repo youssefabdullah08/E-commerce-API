@@ -17,6 +17,9 @@ namespace Store.Reposatrys.Spceficitions
             if (specifiction.craiteria != null)
                 query = query.Where(specifiction.craiteria);
 
+            if (specifiction.Ispagneted)
+                query = query.Skip(specifiction.Skip).Take(specifiction.Take);
+
             query = specifiction.includes
                 .Aggregate(query, (current, expretion) => current.Include(expretion));
 

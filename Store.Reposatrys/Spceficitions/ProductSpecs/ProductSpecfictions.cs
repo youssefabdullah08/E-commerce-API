@@ -10,5 +10,13 @@ namespace Store.Reposatrys.Spceficitions.ProductSpecs
     {
         public int? TypeId { get; set; }
         public int? BrandId { get; set; }
+        public int pageIndex { get; set; } = 1;
+        private const int MAXPAGESIZE = 50;
+        private int pageSize = 6;
+        public int PageSize
+        {
+            get => pageSize;
+            set => pageSize = (value > MAXPAGESIZE) ? int.MaxValue : value;
+        }
     }
 }

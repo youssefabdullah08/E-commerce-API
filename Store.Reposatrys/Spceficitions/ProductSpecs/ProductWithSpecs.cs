@@ -16,6 +16,7 @@ namespace Store.Reposatrys.Spceficitions.ProductSpecs
         {
             AddIncludes(x => x.Brand);
             AddIncludes(x => x.Type);
+            ApllyPagention(specfictions.PageSize * (specfictions.pageIndex - 1), specfictions.PageSize);
         }
     }
 }
