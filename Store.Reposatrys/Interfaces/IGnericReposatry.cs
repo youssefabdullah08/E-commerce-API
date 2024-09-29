@@ -1,4 +1,5 @@
 ﻿using Store.Data.Entites;
+using Store.Reposatrys.Spceficitions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,8 @@ namespace Store.Reposatrys.Interfaces
         Task Add(T item);
         void Update(T item);
         void Delete(T item);
-        Task<IReadOnlyList<T>> GetAll();
+        Task<IReadOnlyList<T>> GetAll(ISpecifiction<T> specs);
+        Task<T> GetbyidWithSpecs(ISpecifiction<T> specs);
         Task<T> Getbyid(int? id);
 
 

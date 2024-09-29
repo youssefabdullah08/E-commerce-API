@@ -1,4 +1,5 @@
 ﻿using Store.Data.Entites;
+using Store.Reposatrys.Spceficitions.ProductSpecs;
 using Store.Serveses.ProductServes.DTOs;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace Store.Serveses.ProductServes
     public interface IProductServes
     {
         Task<ProductDTO> GetProductAsync(int id);
-        Task<IReadOnlyList<ProductDTO>> GetProductsAsync();
+        Task<IReadOnlyList<ProductDTO>> GetProductsAsync(ProductSpecfictions input);
         Task<IReadOnlyList<Brand>> GetBrandsAsync();
         Task<IReadOnlyList<Type>> GetTypeAsync();
     }

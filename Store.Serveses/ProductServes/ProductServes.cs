@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Store.Data.Entites;
 using Store.Reposatrys.Interfaces;
+using Store.Reposatrys.Spceficitions.ProductSpecs;
 using Store.Serveses.ProductServes.DTOs;
 using System;
 using System.Collections.Generic;
@@ -21,11 +22,22 @@ namespace Store.Serveses.ProductServes
             this.unit = unit;
             this.mapper = mapper;
         }
-        public async Task<IReadOnlyList<Type>> GetTypeAsync()
-               => await unit.reposatry<Type>().GetAll();
 
-        public async Task<IReadOnlyList<Brand>> GetBrandsAsync()
- => await unit.reposatry<Brand>().GetAll();
+        public Task<IReadOnlyList<Brand>> GetBrandsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IReadOnlyList<Type>> GetTypeAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        //       public async Task<IReadOnlyList<Type>> GetTypeAsync()
+        //              => await unit.reposatry<Type>().GetAll();
+
+        //       public async Task<IReadOnlyList<Brand>> GetBrandsAsync()
+        //=> await unit.reposatry<Brand>().GetAll();
 
         async Task<ProductDTO> IProductServes.GetProductAsync(int id)
         {
@@ -35,9 +47,10 @@ namespace Store.Serveses.ProductServes
             return (result);
         }
 
-        async Task<IReadOnlyList<ProductDTO>> IProductServes.GetProductsAsync()
+        async Task<IReadOnlyList<ProductDTO>> IProductServes.GetProductsAsync(ProductSpecfictions input)
         {
-            var products = await unit.reposatry<Product>().GetAll();
+            var specs = new ProductWithSpecs(input);
+            var products = await unit.reposatry<Product>().GetAll(specs);
 
             var result = mapper.Map<IReadOnlyList<ProductDTO>>(products);
 
