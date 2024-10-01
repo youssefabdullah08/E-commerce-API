@@ -33,12 +33,13 @@ namespace Store.Reposatrys.Reposatrys
         public async Task<T> GetbyidWithSpecs(ISpecifiction<T> specs)
        => await Evalueter<T>.Getquery(_context.Set<T>(), specs).FirstOrDefaultAsync();
 
-        public Task<T> Getbyid(int? id)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<T> Getbyid(int? id)
+        => await _context.FindAsync<T>(id);
 
         public void Update(T item)
        => _context.Set<T>().Update(item);
+
+        public async Task<IReadOnlyList<T>> GetAll()
+        => await _context.Set<T>().ToListAsync();
     }
 }

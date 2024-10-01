@@ -24,21 +24,13 @@ namespace Store.Serveses.ProductServes
             this.mapper = mapper;
         }
 
-        public Task<IReadOnlyList<Brand>> GetBrandsAsync()
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<IReadOnlyList<Type>> GetTypeAsync()
-        {
-            throw new NotImplementedException();
-        }
 
-        //       public async Task<IReadOnlyList<Type>> GetTypeAsync()
-        //              => await unit.reposatry<Type>().GetAll();
+        public async Task<IReadOnlyList<Type>> GetTypeAsync()
+               => await unit.reposatry<Type>().GetAll();
 
-        //       public async Task<IReadOnlyList<Brand>> GetBrandsAsync()
-        //=> await unit.reposatry<Brand>().GetAll();
+        public async Task<IReadOnlyList<Brand>> GetBrandsAsync()
+        => await unit.reposatry<Brand>().GetAll();
 
         async Task<ProductDTO> IProductServes.GetProductAsync(int id)
         {

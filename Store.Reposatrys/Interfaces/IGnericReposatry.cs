@@ -14,6 +14,8 @@ namespace Store.Reposatrys.Interfaces
         void Update(T item);
         void Delete(T item);
         Task<IReadOnlyList<T>> GetAll(ISpecifiction<T> specs);
+        Task<IReadOnlyList<T>> GetAll();
+
         Task<T> GetbyidWithSpecs(ISpecifiction<T> specs);
         Task<T> Getbyid(int? id);
 
