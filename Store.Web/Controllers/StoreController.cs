@@ -29,6 +29,9 @@ namespace Store.Web.Controllers
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<Brand>>> GetAllTyeps()
          => Ok(await serves.GetTypeAsync());
+        [HttpGet]
+        public async Task<ActionResult<ProductDTO>> GetProductbyid([FromQuery] int id)
+            => Ok(await serves.GetProductAsync(id));
 
     }
 }
