@@ -5,6 +5,7 @@ using Store.Reposatrys.Interfaces;
 using Store.Reposatrys.Reposatrys;
 using Store.Serveses.ProductServes;
 using Store.Web.Helper;
+using Store.Web.Middelware;
 
 namespace Store.Web
 {
@@ -35,7 +36,7 @@ namespace Store.Web
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+            app.UseMiddleware<ExsptionMiddelware>();
             app.UseHttpsRedirection();
 
             app.UseAuthorization();

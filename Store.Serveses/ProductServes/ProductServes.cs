@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Store.Data.Entites;
 using Store.Reposatrys.Interfaces;
+using Store.Reposatrys.Spceficitions;
 using Store.Reposatrys.Spceficitions.ProductSpecs;
 using Store.Serveses.Helper;
 using Store.Serveses.ProductServes.DTOs;
@@ -32,9 +33,10 @@ namespace Store.Serveses.ProductServes
         public async Task<IReadOnlyList<Brand>> GetBrandsAsync()
         => await unit.reposatry<Brand>().GetAll();
 
-        async Task<ProductDTO> IProductServes.GetProductAsync(int id)
+
+        async Task<ProductDTO> GetProductAsync(ISpecifiction<Product> specifiction)
         {
-            var products = await unit.reposatry<Product>().Getbyid(id);
+            var products = await unit.reposatry<Product>().GetbyidWithSpecs(specifiction);
 
             var result = mapper.Map<ProductDTO>(products);
             return (result);
@@ -48,6 +50,14 @@ namespace Store.Serveses.ProductServes
             var result = mapper.Map<IReadOnlyList<ProductDTO>>(products);
 
             return new PagentionDTO<ProductDTO>(input.pageIndex, input.PageSize, products.Count, result);
+        }
+
+        public async Task<ProductDTO> GetProductAsync(int id)
+        {
+            var products = await unit.reposatry<Product>().Getbyid(id);
+
+            var result = mapper.Map<ProductDTO>(products);
+            return (result);
         }
     }
 }

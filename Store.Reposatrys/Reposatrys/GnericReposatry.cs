@@ -33,8 +33,13 @@ namespace Store.Reposatrys.Reposatrys
         public async Task<T> GetbyidWithSpecs(ISpecifiction<T> specs)
        => await Evalueter<T>.Getquery(_context.Set<T>(), specs).FirstOrDefaultAsync();
 
-        public async Task<T> Getbyid(int? id)
-        => await _context.FindAsync<T>(id);
+        public async Task<T> Getbyid(int id)
+        {
+            if (id != null)
+                return await _context.Set<T>().FindAsync(id);
+
+            throw new Exception("id must has a value");
+        }
 
         public void Update(T item)
        => _context.Set<T>().Update(item);

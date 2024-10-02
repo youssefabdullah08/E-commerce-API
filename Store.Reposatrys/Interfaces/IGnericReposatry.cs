@@ -17,7 +17,7 @@ namespace Store.Reposatrys.Interfaces
         Task<IReadOnlyList<T>> GetAll();
 
         Task<T> GetbyidWithSpecs(ISpecifiction<T> specs);
-        Task<T> Getbyid(int? id);
+        Task<T> Getbyid(int id);
 
 
     }
