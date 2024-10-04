@@ -1,8 +1,11 @@
 
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 using Store.Data.Contexts;
+using Store.Reposatrys.Basket;
 using Store.Reposatrys.Interfaces;
 using Store.Reposatrys.Reposatrys;
+using Store.Serveses.BasketService;
 using Store.Serveses.ProductServes;
 using Store.Web.Helper;
 using Store.Web.Middelware;
@@ -22,8 +25,15 @@ namespace Store.Web
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("localConnection"));
             });
+            builder.Services.AddSingleton<IConnectionMultiplexer>(config =>
+            {
+                return ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("Redis"));
+            });
+
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IProductServes, ProductServes>();
+            builder.Services.AddScoped<IBasketService, BasketService>();
+            builder.Services.AddScoped<IBasketReposatry, BasketRepostry>();
             builder.Services.AddAutoMapper(typeof(ProductProfile));
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

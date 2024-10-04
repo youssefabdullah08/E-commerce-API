@@ -20,5 +20,6 @@ namespace Store.Data.Contexts
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Product> products { get; set; }
         public DbSet<Entites.Type> Types { get; set; }
+        public DbSet<DlivaryMethod> DlivaryMethods { get; set; }
     }
 }

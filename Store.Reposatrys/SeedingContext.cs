@@ -46,6 +46,16 @@ namespace Store.Reposatrys
                     }
 
                 }
+                if (context.DlivaryMethods != null && !context.DlivaryMethods.Any())
+                {
+                    var Data = File.ReadAllText("../Store.Reposatrys/SeedData/delivery.json");
+                    var delivry = JsonSerializer.Deserialize<List<DlivaryMethod>>(Data);
+                    if (delivry is not null)
+                    {
+                        await context.DlivaryMethods.AddRangeAsync(delivry);
+                    }
+
+                }
                 await context.SaveChangesAsync();
             }
             catch (Exception ex)
