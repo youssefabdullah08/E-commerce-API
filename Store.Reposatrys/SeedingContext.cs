@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Logging;
 using Store.Data.Contexts;
 using Store.Data.Entites;
 using System;
@@ -56,6 +57,7 @@ namespace Store.Reposatrys
                     }
 
                 }
+
                 await context.SaveChangesAsync();
             }
             catch (Exception ex)

@@ -11,7 +11,7 @@ namespace Store.Reposatrys.Basket.Models
         [Required]
         public string PictureUrl { get; set; }
         [Required]
-        public int Price { get; set; }
+        public decimal Price { get; set; }
         [Required]
         public int count { get; set; }
         [Required]

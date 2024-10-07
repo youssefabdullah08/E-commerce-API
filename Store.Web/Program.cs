@@ -25,6 +25,10 @@ namespace Store.Web
             {
                 options.UseSqlServer(builder.Configuration.GetConnectionString("localConnection"));
             });
+            builder.Services.AddDbContext<StoreIdentityDBContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("IdentityDB"));
+            });
             builder.Services.AddSingleton<IConnectionMultiplexer>(config =>
             {
                 return ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("Redis"));
