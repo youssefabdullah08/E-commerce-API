@@ -7,6 +7,8 @@ using Store.Reposatrys.Interfaces;
 using Store.Reposatrys.Reposatrys;
 using Store.Serveses.BasketService;
 using Store.Serveses.ProductServes;
+using Store.Serveses.TokenServece;
+using Store.Web.Exstntions;
 using Store.Web.Helper;
 using Store.Web.Middelware;
 
@@ -33,11 +35,13 @@ namespace Store.Web
             {
                 return ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("Redis"));
             });
+            builder.Services.AddIdentityConfig(builder.Configuration);
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IProductServes, ProductServes>();
             builder.Services.AddScoped<IBasketService, BasketService>();
             builder.Services.AddScoped<IBasketReposatry, BasketRepostry>();
+            builder.Services.AddScoped<ITokenServece, TokenServece>();
             builder.Services.AddAutoMapper(typeof(ProductProfile));
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();

@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Store.Data.Contexts;
+using Store.Data.Entites;
 using Store.Reposatrys;
 
 namespace Store.Web.Helper
@@ -15,8 +17,11 @@ namespace Store.Web.Helper
                 try
                 {
                     var context = serveses.GetRequiredService<StoreDBcontext>();
+                    var useridentity = serveses.GetRequiredService<UserManager<AppUser>>();
+
                     await context.Database.MigrateAsync();
                     await SeedingContext.SeedAsync(context, factory);
+                    //await identitySeedContext.SeedUserAsync(useridentity);
                 }
                 catch (Exception ex)
                 {

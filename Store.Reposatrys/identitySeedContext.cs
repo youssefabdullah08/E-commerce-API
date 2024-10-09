@@ -10,16 +10,24 @@ namespace Store.Reposatrys
 {
     public class identitySeedContext
     {
-        public void SeedUser(UserManager<AppUser> userManager)
+        public async void SeedUserAsync(UserManager<AppUser> userManager)
         {
             if (!userManager.Users.Any())
             {
                 var user = new AppUser
                 {
-                 Email:"Youssef@gmail.com",
-                 
+                    DisplayName = "YoussefAbdullah",
+                    Email = "youssef@gmail.com",
+                    UserName = "JOKER",
+
+
                 };
+                await userManager.CreateAsync(user, "123456");
+            }
         }
+
     }
 }
-}
+
+
+

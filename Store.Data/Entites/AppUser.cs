@@ -9,6 +9,6 @@ namespace Store.Data.Entites
 {
     public class AppUser : IdentityUser
     {
-
+        public string DisplayName { get; set; }
     }
 }

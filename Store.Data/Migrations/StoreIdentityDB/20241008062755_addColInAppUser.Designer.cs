@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Store.Data.Contexts;
 
@@ -11,9 +12,11 @@ using Store.Data.Contexts;
 namespace Store.Data.Migrations.StoreIdentityDB
 {
     [DbContext(typeof(StoreIdentityDBContext))]
-    partial class StoreIdentityDBContextModelSnapshot : ModelSnapshot
+    [Migration("20241008062755_addColInAppUser")]
+    partial class addColInAppUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
