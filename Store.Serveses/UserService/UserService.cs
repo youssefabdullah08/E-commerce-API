@@ -53,7 +53,7 @@ namespace Store.Serveses.UserService
                 Email = regsterDTO.Email,
                 UserName = regsterDTO.DisplayName,
             };
-            var result = await userManager.CreateAsync(appuser);
+            var result = await userManager.CreateAsync(appuser, regsterDTO.Password);
             if (!result.Succeeded)
                 throw new Exception(result.Errors.Select(x => x.Description).FirstOrDefault());
 
