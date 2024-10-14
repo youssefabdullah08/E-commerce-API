@@ -14,7 +14,7 @@ namespace Store.Data.Contexts
         public StoreDBcontext(DbContextOptions<StoreDBcontext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Brand> Brands { get; set; }
