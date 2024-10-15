@@ -12,5 +12,7 @@ namespace Store.Reposatrys.Basket.Models
         public int? DlivryMethod { get; set; }
         public decimal ShippingPrice { get; set; }
         public List<BasketItem> basketItems { get; set; } = new List<BasketItem>();
+        public string? PaymentIntentId { get; set; }
+        public string? ClientSecret { get; set; }
     }
 }

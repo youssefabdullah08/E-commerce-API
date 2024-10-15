@@ -9,7 +9,7 @@ namespace Store.Reposatrys.Interfaces
 {
     public interface IUnitOfWork
     {
-        IGnericReposatry<T> reposatry<T>() where T : BaseEntity<int>;
+        IGnericReposatry<T> reposatry<T>();
 
         Task<int> ComplteAsync();
     }

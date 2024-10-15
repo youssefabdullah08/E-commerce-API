@@ -8,7 +8,7 @@ namespace Store.Serveses.OrderService.DTOs
 {
     public class OrderDTO
     {
-        public string BasketId { get; set; }
+        public string? BasketId { get; set; }
         public string BuyerEmail { get; set; }
         public int? dlivaryMethodid { get; set; }
         public ShepingAdressDTO shepingAdress { get; set; }
