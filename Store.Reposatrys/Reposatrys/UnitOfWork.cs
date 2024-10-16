@@ -21,7 +21,7 @@ namespace Store.Reposatrys.Reposatrys
         public async Task<int> ComplteAsync()
         => await context.SaveChangesAsync();
 
-        public IGnericReposatry<T> reposatry<T>()
+        public IGnericReposatry<T> reposatry<T>() where T : class
         {
             if (_Repostreies is null)
                 _Repostreies = new Hashtable();

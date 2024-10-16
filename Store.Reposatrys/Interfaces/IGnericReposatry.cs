@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Store.Reposatrys.Interfaces
 {
-    public interface IGnericReposatry<T> where T : BaseEntity<int>
+    public interface IGnericReposatry<T> where T : class
     {
         Task Add(T item);
         void Update(T item);
