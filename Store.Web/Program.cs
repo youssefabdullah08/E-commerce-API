@@ -7,6 +7,7 @@ using Store.Reposatrys.Interfaces;
 using Store.Reposatrys.Reposatrys;
 using Store.Serveses.BasketService;
 using Store.Serveses.OrderService;
+using Store.Serveses.PaymentService;
 using Store.Serveses.ProductServes;
 using Store.Serveses.TokenServece;
 using Store.Serveses.UserService;
@@ -45,6 +46,8 @@ namespace Store.Web
             builder.Services.AddScoped<IBasketReposatry, BasketRepostry>();
             builder.Services.AddScoped<ITokenServece, TokenServece>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<IPaymentService, PaymentService>();
+            builder.Services.AddScoped<IOrderService, OrderService>();
             builder.Services.AddAutoMapper(typeof(ProductProfile));
             builder.Services.AddAutoMapper(typeof(OrderProfile));
             builder.Services.AddEndpointsApiExplorer();

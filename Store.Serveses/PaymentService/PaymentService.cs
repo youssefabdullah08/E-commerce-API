@@ -8,11 +8,6 @@ using Store.Reposatrys.Spceficitions.OrderSpecs;
 using Store.Serveses.BasketService;
 using Store.Serveses.OrderService.DTOs;
 using Stripe;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Store.Serveses.PaymentService
 {
@@ -49,7 +44,7 @@ namespace Store.Serveses.PaymentService
 
             foreach (var item in userBasket.basketItems)
             {
-                var product = await unit.reposatry<Product>().Getbyid(item.productId);
+                var product = await unit.reposatry<Store.Data.Entites.Product>().Getbyid(item.productId);
                 if (item.Price != product.Price)
                 {
                     item.Price = product.Price;

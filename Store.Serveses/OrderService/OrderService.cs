@@ -7,6 +7,7 @@ using Store.Reposatrys.Spceficitions.OrderSpecs;
 using Store.Serveses.BasketService;
 using Store.Serveses.OrderService;
 using Store.Serveses.OrderService.DTOs;
+using Store.Serveses.PaymentService;
 using Store.Serveses.ProductServes;
 using System;
 using System.Collections.Generic;
@@ -22,14 +23,16 @@ namespace Store.Serveses.OrderService
         private readonly IProductServes _product;
         private readonly IUnitOfWork _unit;
         private readonly IMapper _mapper;
+        private readonly IPaymentService paymentService;
 
-        public OrderService(IBasketService basket, IProductServes product, IUnitOfWork unit, IMapper mapper)
+        public OrderService(IBasketService basket, IProductServes product, IUnitOfWork unit, IMapper mapper, IPaymentService paymentService)
         {
 
             _basket = basket;
             _product = product;
             _unit = unit;
             _mapper = mapper;
+            this.paymentService = paymentService;
         }
 
         public async Task<OrderDetailsDTO> CreateOrderAsync(OrderDTO orderDTO)
@@ -67,6 +70,11 @@ namespace Store.Serveses.OrderService
             #region 3
             var subtotal = orderItems.Sum(x => x.Price * x.Quntity);
 
+            var specs = new PaymentSpecs(basket.PaymentIntentId);
+            var oldOrder = await _unit.reposatry<Order>().GetbyidWithSpecs(specs);
+            if (oldOrder is null)
+                await paymentService.createOrUpdatePaymentIntent(basket);
+
             var mapedShippingasdress = _mapper.Map<ShepingAdress>(orderDTO.shepingAdress);
 
             var order = new Order
@@ -77,6 +85,7 @@ namespace Store.Serveses.OrderService
                 SubTotal = subtotal,
                 orderItems = orderItems,
                 BuyerEmail = orderDTO.BuyerEmail,
+                PaymentIntentId = basket.PaymentIntentId,
             };
 
             await _unit.reposatry<Order>().Add(order);
