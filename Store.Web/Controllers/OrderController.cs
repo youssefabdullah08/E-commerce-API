@@ -11,7 +11,7 @@ namespace Store.Web.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    [Authorize]
+
     public class OrderController : ControllerBase
     {
         private readonly IOrderService orderService;

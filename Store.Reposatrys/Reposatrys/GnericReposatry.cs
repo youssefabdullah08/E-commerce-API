@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Store.Reposatrys.Reposatrys
 {
-    public class GnericReposatry<T> : IGnericReposatry<T> where T : BaseEntity<int>
+    public class GnericReposatry<T> : IGnericReposatry<T> where T : class
     {
         private readonly StoreDBcontext _context;
 

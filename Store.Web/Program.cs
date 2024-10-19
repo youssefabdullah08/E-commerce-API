@@ -52,6 +52,13 @@ namespace Store.Web
             builder.Services.AddAutoMapper(typeof(OrderProfile));
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwagerService();
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("Stripe", police =>
+                {
+                    police.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                });
+            });
 
             var app = builder.Build();
             await ApplySeeding.ApplySeedingAsync(app);
@@ -65,6 +72,7 @@ namespace Store.Web
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
+            app.UseCors("Stripe");
 
 
             app.MapControllers();

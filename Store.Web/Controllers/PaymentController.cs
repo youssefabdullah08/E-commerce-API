@@ -11,7 +11,7 @@ namespace Store.Web.Controllers
     public class PaymentController : ControllerBase
     {
         private readonly IPaymentService paymentService;
-        const string endPointSecret = " whsec_b2d604d44cd523f394eb3aa0b00af80c391e13b5c69bcac29ca93fa528dfe356"
+        const string endPointSecret = " whsec_b2d604d44cd523f394eb3aa0b00af80c391e13b5c69bcac29ca93fa528dfe356";
 
         public PaymentController(IPaymentService paymentService)
         {
@@ -42,7 +42,7 @@ namespace Store.Web.Controllers
 
                 else if (stripeEvent.Type == "payment_intent.created")
                 {
-                    // التعامل مع فشل الدفع
+
                 }
 
                 else if (stripeEvent.Type == "payment_intent.failed")

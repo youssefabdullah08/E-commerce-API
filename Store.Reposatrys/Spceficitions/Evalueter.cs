@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Store.Reposatrys.Spceficitions
 {
-    public class Evalueter<T> where T : BaseEntity<int>
+    public class Evalueter<T> where T : class
     {
         public static IQueryable<T> Getquery(IQueryable<T> inputquery, ISpecifiction<T> specifiction)
         {
